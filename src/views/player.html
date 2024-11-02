@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Radio Player</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.8.1/video-js.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.8.1/video.min.js"></script>
+        <style>     
+            body, html {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }    
+            #player-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }    
+            #player {
+                width: 100%;
+                height: auto;
+                min-height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>${brodcastingStationname} - ${ChannelName}</h1>
+            <hr />
+        </header>
+        <section id="player-container">
+            <video id="player" class="video-js vjs-default-skin vjs-big-play-centered"></video>
+        </section>
+        <script>
+            var player = videojs("player", {
+                sources: [{
+                    src: '${streamingUrl}'
+                }],
+                controls : true,
+            });
+        </script>
+    </body>
+</html>
