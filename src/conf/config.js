@@ -4,7 +4,7 @@ module.exports = {
     },
     'KBS': {
         'useCdn': true,
-        'url': 'https://cfpwwwapi.kbs.co.kr/api/v1/landing/live/channel_code/${chanCd}',
+        'url': 'https://cfpwwwapi.kbs.co.kr/api/v1/landing/live/channel_code/${code}',
         'channel': {
             '1RADIO': '21',
             'CLASSICFM': '24',
@@ -13,7 +13,7 @@ module.exports = {
     },
     'MBC': {
         'useCdn': true,
-        'url': 'https://sminiplay.imbc.com/aacplay.ashx?channel=${chanCd}&protocol=M3U8&agent=webapp',
+        'url': 'https://sminiplay.imbc.com/aacplay.ashx?channel=${code}&protocol=M3U8&agent=webapp',
         'channel': {
             'FM': 'sfm',
             'FM4U': 'mfm',
@@ -22,7 +22,7 @@ module.exports = {
     },
     'SBS': {
         'useCdn': true,
-        'url': 'https://apis.sbs.co.kr/play-api/1.0/livestream/${chanPt}/${chanCd}?protocol=hls&ssl=Y',
+        'url': 'https://apis.sbs.co.kr/play-api/1.0/livestream/${path}/${code}?protocol=hls&ssl=Y',
         'channel': {
             'POWERFM': [
                 'powerpc',

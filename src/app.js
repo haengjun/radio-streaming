@@ -32,14 +32,15 @@ app.get('/radio', (req, res) => {
         apiUrl = config[statNm].url;
         switch (statNm) {
             case 'SBS':
-                apiUrl = apiUrl.replace('${chanPt}', config[statNm].channel[chnlNm][0]);
-                apiUrl = apiUrl.replace('${chanCd}', config[statNm].channel[chnlNm][1]);
+                apiUrl = apiUrl.replace('${path}', config[statNm].channel[chnlNm][0]);
+                apiUrl = apiUrl.replace('${code}', config[statNm].channel[chnlNm][1]);
                 break;
             default:
-                apiUrl = apiUrl.replaceAll('${chanCd}', config[statNm].channel[chnlNm]);
+                apiUrl = apiUrl.replaceAll('${code}', config[statNm].channel[chnlNm]);
         }
         console.log('Api URL: %s', apiUrl);
-
+        
+        // CDN Server에서 Streaming URL을 얻어내기 위해 Api를 호출한다
         axios
         .get(apiUrl)
         .then(function(resp) {
@@ -74,8 +75,8 @@ function sendHTML(actCd, res, statNm, chnlNm, strmUrl) {
 
     // HTML 전송
     fs.readFile(__dirname + '/views/' +  (actCd === 'I' ? 'information': 'player') + '.html', 'utf8', (err, html) => {
-        html = html.replace('${brodcastingStationname}', statNm)
-        html = html.replace('${ChannelName}', config.channelName[statNm + '-' + chnlNm])
+        html = html.replace('${stationName}', statNm)
+        html = html.replace('${channelName}', config.channelName[statNm + '-' + chnlNm])
         html = html.replace('${streamingUrl}', strmUrl);
         res.status(200);
         res.write(html);
